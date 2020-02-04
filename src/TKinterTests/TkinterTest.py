@@ -14,6 +14,9 @@ button4 = Button(bottomFrame, text="Button 4", fg="yellow")
 button1.pack(side=LEFT)
 button2.pack(side=LEFT)
 button3.pack(side=LEFT)
-button4.pack(side=LEFT)
+button4.pack(side=BOTTOM)
+
+textOne = Label(mainWindow,text="ONE",bg="red",fg="white")
+textOne.pack(side=TOP,fill=BOTH)
 
 mainWindow.mainloop()

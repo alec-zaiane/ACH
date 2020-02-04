@@ -4,12 +4,12 @@ import asyncio
 import logging
 import argparse
 
-import WebUI
-import HyperDeck
+import src.HyperDeck.WebUI as WebUI
+import src.HyperDeck.HyperDeck as HyperDeck
 
 
 async def main(loop, args):
-	hyperdeck = HyperDeck.HyperDeck(args.address, 9993)
+	hyperdeck = src.HyperDeck.HyperDeck.HyperDeck(args.address, 9993)
 	await hyperdeck.connect()
 
 	webui = WebUI.WebUI()
