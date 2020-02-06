@@ -1,3 +1,5 @@
+import asyncio
+
 import src.HyperDeck.HyperDeck as HDLibrary
 
 
@@ -9,6 +11,7 @@ class HDeck:
 
     def connect(self):
         print("Connecting to "+self.ip)
+        asyncio.run(self.Deck.connect())
         print("Connection Attempt Finished")
         # TODO replace debug code here with something better after seeing what it actually returns
 

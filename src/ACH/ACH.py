@@ -1,6 +1,5 @@
-import src.HyperDeck.HyperDeck
-import src.HyperSpeed.HDeck as HD
+import src.HyperDeck.HyperDeck as HyperDeck
 
-Hd1 = HD.HDeck("10.0.1.16", "HD1")
+Hd1 = HyperDeck()
 Hd1.connect()
 Hd1.test_connection()
