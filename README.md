@@ -1,2 +1,2 @@
 # HyperSpeed
- Program for controlling blackmagic HyperDecks to create instant replays
+ Program for controlling Blackmagic HyperDecks with an emphasis on instant replay functionality
