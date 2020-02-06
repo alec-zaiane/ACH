@@ -1,0 +1,3 @@
+https://github.com/billgrant/hyperdeck_scripts/blob/master/hyperdeck_mp.py
+https://github.com/barlaensdoonn/conundrum/blob/master/start.py
+https://github.com/LA1TV/Hyperdeck-JS-Lib
