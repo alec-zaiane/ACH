@@ -5,8 +5,8 @@ class replay:
         self.clipIndex = clipindex
         self.timeCode = timecode
 
-    def getTime(self):
+    def gettime(self):
         return self.timeCode
 
-    def getIndex(self):
+    def getindex(self):
         return self.clipIndex
