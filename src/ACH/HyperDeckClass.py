@@ -21,9 +21,11 @@ class HyperDeck:
             print(self.ip+" | "+to_log)
 
     def print_log(self):
+        # iterate over this object's log and print each element, separated by a horizontal line
         for entry in self.log:
             print(entry)
             print("══════════════════════════")
+        # print out number of log entries
         print(str(len(self.log))+" entries in HD @"+self.ip)
 
     def always_print_log(self, print_on_log_entry):
@@ -33,14 +35,15 @@ class HyperDeck:
         print("send: " + command)
         add_log("send: "+command)
         if multithread:
+            # open new thread with the goal of running send_command_multithread_process
             p1 = Process(target=self.send_command_multithread_process, args=command)
-            p1.start()
+            p1.start()  # run the thread
         else:
-            tn = Telnet(self.ip, tcp_port)
-            tn.write(bytes(command, "utf-8") + b'\r\n')
+            tn = Telnet(self.ip, tcp_port)  # Opens new telnet object with connection to Hyperdeck
+            tn.write(bytes(command, "utf-8") + b'\r\n')  # Sends the command to the Hyperdeck
             # tn.write(b'quit'+b'\r\n') TODO determine if this is needed
-            add_log(tn.read_all().decode('ascii'))
-            return self.log[-1]
+            add_log(tn.read_all().decode('ascii'))  # Reads the hyperdeck's answer and writes it to a log
+            return self.log[-1]  # Return the hyperdeck's answer in case needed
 
     def send_command_multithread_process(self, command):
         tn = Telnet(self.ip,tcp_port)
@@ -48,6 +51,8 @@ class HyperDeck:
         # tn.write(b'quit'+b'\r\n') TODO determine if this is needed
         out = tn.read_all().decode('ascii')
         add_log(out)
+        # return statement kills the thread
+        # since memory space is shared we don't have to worry about waiting for it and joining vars
         return out
 
     def send_user_command(self):
