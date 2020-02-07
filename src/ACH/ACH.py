@@ -23,5 +23,3 @@ Hd1.test_connection()
 
 while True:
     Hd1.send_user_command()
-
-
