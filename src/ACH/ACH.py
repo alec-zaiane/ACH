@@ -1,10 +1,8 @@
-from src.ACH.HyperDeckClass import HyperDeck
-
+from src.ACH.HyperDeckClass import*
+import multiprocessing
 
 # initialize hyperdeck list
 hyperdecks = []
-# initialize log
-main_log = []
 
 
 # define util functions
@@ -23,3 +21,4 @@ Hd1.test_connection()
 
 while True:
     Hd1.send_user_command()
+    print_log_total()
