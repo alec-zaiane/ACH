@@ -8,9 +8,9 @@ tcp_port = 9993
 
 class HyperDeck:
 
-    def send_command(self,command):
+    def send_command(self, command):
         print("out: " + command)
-        tn = Telnet(self.ip,tcp_port)
+        tn = Telnet(self.ip, tcp_port)
         tn.write(bytes(command, "utf-8") + b'\r\n')
         tn.write(b'quit'+b'\r\n')
         return tn.read_all().decode('ascii')
