@@ -40,7 +40,6 @@ class HyperDeck:
 
     def send_command(self, command):
         if self.connectable:
-            print("send: " + command)
             self.add_log("send: " + command)
             if multithread:
                 # open new thread with the goal of running send_command_multithread_process
