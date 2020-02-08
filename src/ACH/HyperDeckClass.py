@@ -16,7 +16,6 @@ class HyperDeck:
         self.log = []
         self.always_print_log = False
 
-
     def add_log(self, to_log):
         self.log.append(to_log)
         main_log.append(self.ip+" | "+to_log)
@@ -44,12 +43,12 @@ class HyperDeck:
         else:
             tn = Telnet(self.ip, tcp_port)  # Opens new telnet object with connection to Hyperdeck
             tn.write(bytes(command, "utf-8") + b'\r\n')  # Sends the command to the Hyperdeck
-            tn.write(b'quit'+b'\r\n') # quit connection, for some reason this is needed
+            tn.write(b'quit'+b'\r\n')  # quit connection, for some reason this is needed
             self.add_log(tn.read_all().decode('ascii'))  # Reads the hyperdeck's answer and writes it to a log
             return self.log[-1]  # Return the hyperdeck's answer in case needed
 
     def send_command_multithread_process(self, command):
-        tn = Telnet(self.ip,tcp_port)
+        tn = Telnet(self.ip, tcp_port)
         tn.write(bytes(command, "utf-8") + b'\r\n')
         tn.write(b'quit'+b'\r\n')
         out = tn.read_all().decode('ascii')
