@@ -1,5 +1,6 @@
 from telnetlib import Telnet
 from threading import Thread
+import socket
 
 # initialize log
 main_log = []
@@ -47,8 +48,8 @@ class HyperDeck:
                 p1.start()  # run the thread
             else:
                 try:
-                    tn = Telnet(self.ip, tcp_port)  # Opens new telnet object with connection to Hyperdeck
-                except TimeoutError:
+                    tn = Telnet(self.ip, tcp_port, timeout=2)  # Opens new telnet object with connection to Hyperdeck
+                except socket.timeout:
                     self.connectable = False
                     self.add_log("TimeoutError, Hyperdeck refused to connect")
                     return "Error"
@@ -58,7 +59,7 @@ class HyperDeck:
                 self.add_log(out)  # adds the output to the log
                 return out  # Return the hyperdeck's answer in case needed
         else:
-            print(self + " is not connected/not reachable, run test_connection() to verify and attempt to reconnect")
+            print(str(self) + " is not connected/not reachable, run test_connection() to verify and attempt to reconnect")
             return "Error: Hyperdeck is not connected"
 
     def send_command_multithread_process(self, command):

@@ -25,7 +25,7 @@ for ip in hyperdeck_ip_list:
 for hd in hyperdecks:
     output = hd.test_connection()
     if output == "Error":
-        print(hd+" is not reachable")
+        print(str(hd)+" is not reachable")
     else:
-        print(hd+" connected")
+        print(str(hd)+" connected")
 print("══════════════════════════")
