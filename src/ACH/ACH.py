@@ -51,5 +51,4 @@ for hd in hyperdecks:
         print(str(hd)+" connected")
 print("══════════════════════════")
 
-while True:
-    send_all_hyperdecks(input("command:\n"))
+
