@@ -50,3 +50,4 @@ for hd in hyperdecks:
     else:
         print(str(hd)+" connected")
 print("══════════════════════════")
+# Initialize UI

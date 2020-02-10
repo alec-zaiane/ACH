@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="451d7cda-d67c-405e-83f6-151d45b46e6c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ACH/Timecode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Skyli.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Skyli.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ACH/ACH.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ACH/ACH.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ACH/HyperDeckClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ACH/HyperDeckClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ACH/Replay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ACH/Replay.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +54,7 @@
       <workItem from="1581205407030" duration="74000" />
       <workItem from="1581205492862" duration="1744000" />
       <workItem from="1581270381594" duration="279000" />
-      <workItem from="1581348550843" duration="2284000" />
+      <workItem from="1581348550843" duration="4517000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes and tests">
       <created>1580836362998</created>
@@ -123,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581270469106</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Format Fixes&#10;enabled multithreading">
+      <created>1581351084483</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1581351084483</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,17 +141,18 @@
     <MESSAGE value="Commented code, cleaned up imports" />
     <MESSAGE value="Added config files to repo" />
     <MESSAGE value="Final commit on laptop before git push" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final commit on laptop before git push" />
+    <MESSAGE value="Format Fixes&#10;enabled multithreading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Format Fixes&#10;enabled multithreading" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581205622445">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1581205622445" />
-    <state x="651" y="0" key="CommitChangelistDialog2" timestamp="1581270464430">
+    <state x="651" y="0" key="CommitChangelistDialog2" timestamp="1581351083011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="651" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581270464430" />
+    <state x="651" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581351083011" />
     <state x="284" y="301" key="FileChooserDialogImpl" timestamp="1580832419842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
