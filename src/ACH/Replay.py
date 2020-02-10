@@ -1,12 +1,13 @@
 
 
-class replay:
-    def __init__(self,clipindex,timecode):
-        self.clipIndex = clipindex
-        self.timeCode = timecode
+class Replay:
+    def __init__(self, clipindex, timecode):
+        self.time_code = timecode
+        self.stars = 0
+        self.player = ""
+        self.team = ""
 
-    def gettime(self):
-        return self.timeCode
+    def get_time(self):
+        return self.time_code
 
-    def getindex(self):
-        return self.clipIndex
+

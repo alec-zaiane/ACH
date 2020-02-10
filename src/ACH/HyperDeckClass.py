@@ -6,7 +6,7 @@ import socket
 main_log = []
 
 tcp_port = 9993
-multithread = False  # Currently not working
+multithread = False
 
 
 class HyperDeck:
@@ -17,6 +17,8 @@ class HyperDeck:
         self.log = []
         self.always_print_log = False
         self.connectable = True
+
+        self.end_time = ""
 
     def __str__(self):
         return "Hyperdeck @" + self.ip
@@ -43,7 +45,7 @@ class HyperDeck:
             self.add_log("send: " + command)
             if multithread:
                 # open new thread with the goal of running send_command_multithread_process
-                p1 = Thread(target=self.send_command_multithread_process, args=command)
+                p1 = Thread(target=self.send_command_multithread_process, args=(self, command))
                 p1.start()  # run the thread
             else:
                 try:

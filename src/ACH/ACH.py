@@ -5,6 +5,7 @@ from multiprocessing import Process
 # initialize hyperdeck list
 hyperdecks = []
 
+
 # define util functions
 def add_log(string):
     main_log.append(string)
@@ -27,7 +28,7 @@ def send_all_hyperdecks(command):
     # Create multiple processes to send each hyperdeck a command at the same time
     for deck in hyperdecks:
         if deck.connectable:
-            processes.append(Process(target=send_hyperdeck(),args=command))
+            processes.append(Process(target=send_hyperdeck(), args=command))
     # start each process
     for process in processes:
         process.start()
