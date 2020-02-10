@@ -5,6 +5,7 @@ from multiprocessing import Process
 # initialize hyperdeck list
 hyperdecks = []
 
+
 # define util functions
 def add_log(string):
     main_log.append(string)
@@ -27,7 +28,7 @@ def send_all_hyperdecks(command):
     # Create multiple processes to send each hyperdeck a command at the same time
     for deck in hyperdecks:
         if deck.connectable:
-            processes.append(Process(target=send_hyperdeck(),args=command))
+            send_hyperdeck(deck, command)
     # start each process
     for process in processes:
         process.start()
@@ -38,7 +39,7 @@ def send_all_hyperdecks(command):
 
 # Load Hyperdecks from file found two directories up (os.pardir to go up) and in the assets folder (should be OS agnostic)
 print("Loading HyperDecks:")
-hyperdeck_ip_list = [line.rstrip('\n') for line in open(os.path.join(os.pardir, os.pardir, "assets\\HyperDecks.txt"), "r")]
+hyperdeck_ip_list = [line.rstrip('\n') for line in open(os.path.join(os.pardir, os.pardir, "assets", "HyperDecks.txt"), "r")]
 for ip in hyperdeck_ip_list:
     hyperdecks.append(HyperDeck(ip))
 # Test if each Hyperdeck is connected, if not, warn user
@@ -49,3 +50,6 @@ for hd in hyperdecks:
     else:
         print(str(hd)+" connected")
 print("══════════════════════════")
+
+while True:
+    send_all_hyperdecks(input("command:\n"))
