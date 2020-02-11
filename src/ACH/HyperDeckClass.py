@@ -47,7 +47,7 @@ class HyperDeck:
                 p1.start()  # run the thread
             else:
                 try:
-                    tn = Telnet(self.ip, tcp_port, timeout=2)  # Opens new telnet object with connection to Hyperdeck
+                    tn = Telnet(self.ip, tcp_port, timeout=4)  # Opens new telnet object with connection to Hyperdeck
                 except (socket.timeout, TimeoutError):
                     self.connectable = False
                     self.add_log("TimeoutError, Hyperdeck refused to connect")

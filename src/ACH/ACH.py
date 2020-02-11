@@ -51,4 +51,8 @@ for hd in hyperdecks:
         print(str(hd)+" connected")
 print("══════════════════════════")
 
+hd = HyperDeck("10.0.1.16")
+while True:
+    hd.send_command(input(""))
+
 
