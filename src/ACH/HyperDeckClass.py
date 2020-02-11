@@ -51,6 +51,7 @@ class HyperDeck:
                 except (socket.timeout, TimeoutError):
                     self.connectable = False
                     self.add_log("TimeoutError, Hyperdeck refused to connect")
+                    print(self+" Refused to connect")
                     return "Error"
                 tn.write(bytes(command, "utf-8") + b'\r\n')  # Sends the command to the Hyperdeck
                 tn.write(b'quit' + b'\r\n')  # quit connection, for some reason this is needed
