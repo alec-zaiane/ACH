@@ -6,6 +6,10 @@ from multiprocessing import Process
 # initialize hyperdeck list
 hyperdecks = []
 
+# define some timing functions
+global record_start_time
+record_start_time = time.time()
+
 
 # <editor-fold desc="Function definitions">
 # define util functions
@@ -37,6 +41,14 @@ def send_all_hyperdecks(command):
     # Wait for each process to end
     for process in processes:
         process.join()
+
+
+def start_recording():
+    send_all_hyperdecks("record")
+    global record_start_time
+    record_start_time = time.time()
+
+
 # </editor-fold>
 
 
@@ -54,5 +66,4 @@ for hd in hyperdecks:
         print(str(hd)+" connected")
 print("══════════════════════════")
 
-while True:
-    send_all_hyperdecks(input(""))
+
