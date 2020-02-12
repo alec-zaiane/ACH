@@ -1,7 +1,7 @@
 from telnetlib import Telnet
 from threading import Thread
 import socket
-from time import time
+
 
 # initialize log
 main_log = []
@@ -23,7 +23,6 @@ class HyperDeck:
         self.send_command("play")
         self.mode = "play"
         self.send_command("stop")
-        self.record_start_time = 0
         self.end_time = ""
 
     def __str__(self):
@@ -163,7 +162,6 @@ class HyperDeck:
 
     def record(self):
         self.send_command("record")
-        self.record_start_time = time()
         self.mode = "record"
 
     def stop(self):

@@ -1,12 +1,17 @@
 from src.ACH.HyperDeckClass import*
 import os
-import time
+from time import time
 from multiprocessing import Process
 from src.ACH.TimecodeClass import *
 
 # initialize hyperdeck list
 hyperdecks = []
+# initialize replay List
+replays = []
 
+# record_start_time
+global record_start_time
+record_start_time = 0
 
 
 # <editor-fold desc="Function definitions">
@@ -43,7 +48,13 @@ def send_all_hyperdecks(command):
 
 def start_recording():
     send_all_hyperdecks("record")
+    global record_start_time
+    record_start_time = time()
 
+def save_replay(timeOffset_ms):
+    record_duration = time()-record_start_time
+    if record_duration < timeOffset_ms:
+        replays.append("klajdksjadkljda") #TODO FIX THIS IMPORTANT
 
 # </editor-fold>
 
