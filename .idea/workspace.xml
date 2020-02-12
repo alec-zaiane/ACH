@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="451d7cda-d67c-405e-83f6-151d45b46e6c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/scona.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ACH.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ACH.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ACH/ACH.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ACH/ACH.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ACH/HyperDeckClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ACH/HyperDeckClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ACH/Replay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ACH/Replay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ACH/TimecodeClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ACH/TimecodeClass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,13 +32,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/ACH/ACH.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets" />
-      <recent name="$PROJECT_DIR$/src/ACH" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -64,8 +53,8 @@
       <workItem from="1581095913829" duration="5341000" />
       <workItem from="1581205407030" duration="74000" />
       <workItem from="1581205492862" duration="1744000" />
-      <workItem from="1581360677990" duration="5199000" />
-      <workItem from="1581522746225" duration="3771000" />
+      <workItem from="1581270381594" duration="279000" />
+      <workItem from="1581348550843" duration="4517000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes and tests">
       <created>1580836362998</created>
@@ -123,42 +112,21 @@
       <option name="project" value="LOCAL" />
       <updated>1581206167181</updated>
     </task>
-    <task id="LOCAL-00009" summary="removed multiprocessing when sending to multiple hyperdecks&#10;Still need to fix network timeout when recording">
-      <created>1581362147675</created>
+    <task id="LOCAL-00009" summary="Final commit on laptop before git push">
+      <created>1581270469106</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1581362147675</updated>
+      <updated>1581270469106</updated>
     </task>
-    <task id="LOCAL-00010" summary="removed multiprocessing when sending to multiple hyperdecks&#10;Still need to fix network timeout when recording">
-      <created>1581362531616</created>
+    <task id="LOCAL-00010" summary="Format Fixes&#10;enabled multithreading">
+      <created>1581351084483</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1581362531616</updated>
+      <updated>1581351084483</updated>
     </task>
-    <task id="LOCAL-00011" summary="Fixed Recording errors, increased timeout">
-      <created>1581447588039</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1581447588039</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Fixed Recording errors, increased timeout">
-      <created>1581448919171</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1581448919171</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Fixed Recording errors, increased timeout">
-      <created>1581460401476</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1581460401476</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,85 +140,78 @@
     <MESSAGE value="added play, record, more commands&#10;potentially made it multithreaded" />
     <MESSAGE value="Commented code, cleaned up imports" />
     <MESSAGE value="Added config files to repo" />
-    <MESSAGE value="removed multiprocessing when sending to multiple hyperdecks&#10;Still need to fix network timeout when recording" />
-    <MESSAGE value="Fixed Recording errors, increased timeout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Recording errors, increased timeout" />
+    <MESSAGE value="Final commit on laptop before git push" />
+    <MESSAGE value="Format Fixes&#10;enabled multithreading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Format Fixes&#10;enabled multithreading" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="372" y="136" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581360883799">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581205622445">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1581205622445" />
-    <state x="372" y="136" key="#com.intellij.execution.impl.EditConfigurationsDialog/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581360883799" />
-    <state x="1085" y="23" key="CommitChangelistDialog2" timestamp="1581526923129">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state x="651" y="0" key="CommitChangelistDialog2" timestamp="1581351083011">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="651" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581206166636" />
-    <state x="1085" y="23" key="CommitChangelistDialog2/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581526923129" />
+    <state x="651" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581351083011" />
     <state x="284" y="301" key="FileChooserDialogImpl" timestamp="1580832419842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="284" y="301" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580832419842" />
-    <state width="2518" height="403" key="GridCell.Tab.0.bottom" timestamp="1581526894290">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state width="1493" height="96" key="GridCell.Tab.0.bottom" timestamp="1581350798517">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1878" height="335" key="GridCell.Tab.0.bottom/0.0.1536.824/-954.-2160.1920.1040@-954.-2160.1920.1040" timestamp="1580833500928" />
     <state width="1493" height="299" key="GridCell.Tab.0.bottom/0.0.1536.824/-954.-2160.1920.1040@0.0.1536.824" timestamp="1580832956179" />
     <state width="2517" height="335" key="GridCell.Tab.0.bottom/0.0.1536.824/-954.-2160.2560.1400@-954.-2160.2560.1400" timestamp="1580834584506" />
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581205715806" />
-    <state width="2518" height="403" key="GridCell.Tab.0.bottom/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581526894290" />
-    <state width="2518" height="403" key="GridCell.Tab.0.center" timestamp="1581526894290">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state width="1493" height="96" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581350798517" />
+    <state width="1493" height="96" key="GridCell.Tab.0.center" timestamp="1581350798508">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1878" height="335" key="GridCell.Tab.0.center/0.0.1536.824/-954.-2160.1920.1040@-954.-2160.1920.1040" timestamp="1580833500928" />
     <state width="1493" height="299" key="GridCell.Tab.0.center/0.0.1536.824/-954.-2160.1920.1040@0.0.1536.824" timestamp="1580832956179" />
     <state width="2517" height="335" key="GridCell.Tab.0.center/0.0.1536.824/-954.-2160.2560.1400@-954.-2160.2560.1400" timestamp="1580834584506" />
-    <state width="1493" height="224" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581205715806" />
-    <state width="2518" height="403" key="GridCell.Tab.0.center/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581526894290" />
-    <state width="2518" height="403" key="GridCell.Tab.0.left" timestamp="1581526894289">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state width="1493" height="96" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581350798508" />
+    <state width="1493" height="96" key="GridCell.Tab.0.left" timestamp="1581350798508">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1878" height="335" key="GridCell.Tab.0.left/0.0.1536.824/-954.-2160.1920.1040@-954.-2160.1920.1040" timestamp="1580833500928" />
     <state width="1493" height="299" key="GridCell.Tab.0.left/0.0.1536.824/-954.-2160.1920.1040@0.0.1536.824" timestamp="1580832956179" />
     <state width="2517" height="335" key="GridCell.Tab.0.left/0.0.1536.824/-954.-2160.2560.1400@-954.-2160.2560.1400" timestamp="1580834584505" />
-    <state width="1493" height="224" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581205715806" />
-    <state width="2518" height="403" key="GridCell.Tab.0.left/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581526894289" />
-    <state width="2518" height="403" key="GridCell.Tab.0.right" timestamp="1581526894290">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state width="1493" height="96" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581350798508" />
+    <state width="1493" height="96" key="GridCell.Tab.0.right" timestamp="1581350798516">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1878" height="335" key="GridCell.Tab.0.right/0.0.1536.824/-954.-2160.1920.1040@-954.-2160.1920.1040" timestamp="1580833500928" />
     <state width="1493" height="299" key="GridCell.Tab.0.right/0.0.1536.824/-954.-2160.1920.1040@0.0.1536.824" timestamp="1580832956179" />
     <state width="2517" height="335" key="GridCell.Tab.0.right/0.0.1536.824/-954.-2160.2560.1400@-954.-2160.2560.1400" timestamp="1580834584506" />
-    <state width="1493" height="224" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581205715806" />
-    <state width="2518" height="403" key="GridCell.Tab.0.right/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581526894290" />
-    <state x="1047" y="230" key="RollbackChangesDialog" timestamp="1581361129938">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state width="1493" height="96" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581350798516" />
+    <state x="628" y="124" key="RollbackChangesDialog" timestamp="1581095498518">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="628" y="124" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1581095498518" />
-    <state x="1047" y="230" key="RollbackChangesDialog/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581361129938" />
-    <state x="509" y="125" key="SettingsEditor" timestamp="1581522787547">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state x="277" y="56" key="SettingsEditor" timestamp="1581348764373">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1581204596646" />
-    <state x="509" y="125" key="SettingsEditor/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581522787547" />
-    <state x="602" y="265" key="Vcs.Push.Dialog.v2" timestamp="1581448921968">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1581348764373" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1581270474878">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581206171943" />
-    <state x="602" y="265" key="Vcs.Push.Dialog.v2/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581448921968" />
-    <state x="783" y="420" key="com.intellij.ide.util.TipDialog" timestamp="1581522746771">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581270474878" />
+    <state x="470" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1581348589438">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="470" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581270440417" />
-    <state x="783" y="420" key="com.intellij.ide.util.TipDialog/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581522746771" />
-    <state x="963" y="572" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581522774948">
-      <screen x="0" y="23" width="2560" height="1374" />
+    <state x="470" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581348589438" />
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581348593579">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1581204555650" />
-    <state x="963" y="572" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/2560.23.2560.1417/0.23.2560.1374@0.23.2560.1374" timestamp="1581522774948" />
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1581348593579" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1581349064536">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581349064536" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ACH$ACH.coverage" NAME="ACH Coverage Results" MODIFIED="1581526894285" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/ACH" />
+    <SUITE FILE_PATH="coverage/ACH$ACH.coverage" NAME="ACH Coverage Results" MODIFIED="1581350798480" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/ACH" />
     <SUITE FILE_PATH="coverage/HyperSpeed$HyperSpeed.coverage" NAME="HyperSpeed Coverage Results" MODIFIED="1580834584498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/HyperSpeed" />
   </component>
 </project>
