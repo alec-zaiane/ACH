@@ -17,6 +17,7 @@ class HyperDeck:
         self.log = []
         self.always_print_log = False
         self.connectable = True
+        self.firstConnect = True
 
     def __str__(self):
         return "Hyperdeck @" + self.ip
@@ -51,7 +52,9 @@ class HyperDeck:
                 except (socket.timeout, TimeoutError):
                     self.connectable = False
                     self.add_log("TimeoutError, Hyperdeck refused to connect")
-                    print(self+" Refused to connect")
+                    if not self.firstConnect:
+                        print(str(self)+" Refused to connect")
+                    self.firstConnect = False
                     return "Error"
                 tn.write(bytes(command, "utf-8") + b'\r\n')  # Sends the command to the Hyperdeck
                 tn.write(b'quit' + b'\r\n')  # quit connection, for some reason this is needed
@@ -63,7 +66,15 @@ class HyperDeck:
             return "Error: Hyperdeck is not connected"
 
     def send_command_multithread_process(self, command):
-        tn = Telnet(self.ip, tcp_port)
+        try:
+            tn = Telnet(self.ip, tcp_port)
+        except (socket.timeout, TimeoutError):
+            self.connectable = False
+            self.add_log("TimeoutError, Hyperdeck refused to connect")
+            if not self.firstConnect:
+                print(str(self) + " Refused to connect")
+            self.firstConnect = False
+            return "Error"
         tn.write(bytes(command, "utf-8") + b'\r\n')
         tn.write(b'quit' + b'\r\n')
         out = tn.read_all().decode('ascii')
