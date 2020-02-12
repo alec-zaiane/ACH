@@ -18,6 +18,9 @@ class HyperDeck:
         self.always_print_log = False
         self.connectable = True
         self.firstConnect = True
+        self.send_command("play")
+        self.mode = "play"
+        self.send_command("stop")
 
     def __str__(self):
         return "Hyperdeck @" + self.ip
@@ -121,3 +124,6 @@ class HyperDeck:
         # Groups clip start and end into a 2d list
         clips = [clips_start_times, clips_end_times]
         return clips
+
+    def goto(self,timecode):
+        self.send_command()

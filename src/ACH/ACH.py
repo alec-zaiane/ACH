@@ -1,11 +1,13 @@
 from src.ACH.HyperDeckClass import*
 import os
+import time
 from multiprocessing import Process
 
 # initialize hyperdeck list
 hyperdecks = []
 
 
+# <editor-fold desc="Function definitions">
 # define util functions
 def add_log(string):
     main_log.append(string)
@@ -35,6 +37,7 @@ def send_all_hyperdecks(command):
     # Wait for each process to end
     for process in processes:
         process.join()
+# </editor-fold>
 
 
 # Load Hyperdecks from file found two directories up (os.pardir to go up) and in the assets folder (should be OS agnostic)
