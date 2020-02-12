@@ -7,9 +7,6 @@ from src.ACH.TimecodeClass import *
 # initialize hyperdeck list
 hyperdecks = []
 
-# define some timing functions
-global record_start_time
-record_start_time = time.time()
 
 
 # <editor-fold desc="Function definitions">
@@ -46,8 +43,6 @@ def send_all_hyperdecks(command):
 
 def start_recording():
     send_all_hyperdecks("record")
-    global record_start_time
-    record_start_time = time.time()
 
 
 # </editor-fold>

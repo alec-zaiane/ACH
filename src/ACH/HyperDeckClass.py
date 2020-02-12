@@ -1,6 +1,7 @@
 from telnetlib import Telnet
 from threading import Thread
 import socket
+from time import time
 
 # initialize log
 main_log = []
@@ -22,7 +23,7 @@ class HyperDeck:
         self.send_command("play")
         self.mode = "play"
         self.send_command("stop")
-
+        self.record_start_time = 0
         self.end_time = ""
 
     def __str__(self):
@@ -32,7 +33,7 @@ class HyperDeck:
         if from_hd:
             # Scan to_log for the error codes
             return_code = to_log[0:3]
-            if not (return_code == "200" or return_code == "500" or return_code =="205"):
+            if not (return_code == "200" or return_code == "500" or return_code == "205"):
                 # There has been an error
                 self.print_error_code(return_code)
                 self.error_log.append(to_log)
@@ -162,6 +163,7 @@ class HyperDeck:
 
     def record(self):
         self.send_command("record")
+        self.record_start_time = time()
         self.mode = "record"
 
     def stop(self):
