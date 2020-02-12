@@ -30,8 +30,7 @@ class HyperDeck:
         if from_hd:
             # Scan to_log for the error codes
             return_code = to_log[0:3]
-            print(return_code)  # TODO remove debug code once verifying it works
-            if not return_code == "200":
+            if not (return_code == "200" or return_code == "500" or return_code =="205"):
                 # There has been an error
                 self.print_error_code(return_code)
                 self.error_log.append(to_log)
@@ -40,6 +39,7 @@ class HyperDeck:
         main_log.append(self.ip + " | " + to_log)
         if self.always_print_log:
             print(self.ip + " | " + to_log)
+        return to_log
 
     def print_error_code(self, code):
         if code == "100":
@@ -167,7 +167,8 @@ class HyperDeck:
 
     def goto(self, timecode):
         # TODO Verify timecode format before sending message
-        self.send_command("jog: timecode:" + timecode)
+        self.send_command("goto: timecode:" + timecode)
+        self.mode = "play"
 
     def get_clips(self):  # not sure if actually needed
         self.send_command("clips get")

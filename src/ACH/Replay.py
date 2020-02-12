@@ -1,12 +1,12 @@
 
 
-class replay:
-    def __init__(self,clipindex,timecode):
+class Replay:
+    def __init__(self, clipindex, timecode):
         self.clipIndex = clipindex
         self.timeCode = timecode
 
-    def gettime(self):
+    def get_time(self):
         return self.timeCode
 
-    def getindex(self):
+    def get_index(self):
         return self.clipIndex

@@ -2,6 +2,7 @@ from src.ACH.HyperDeckClass import*
 import os
 import time
 from multiprocessing import Process
+from src.ACH.TimecodeClass import *
 
 # initialize hyperdeck list
 hyperdecks = []
@@ -66,4 +67,8 @@ for hd in hyperdecks:
         print(str(hd)+" connected")
 print("══════════════════════════")
 
+print(to_millis("00:04:31:00"))
+print(to_hyperdeck_code(1000))
+
+print(hyperdecks[1].send_command("clips get"))
 
