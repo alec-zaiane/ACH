@@ -135,7 +135,7 @@ def gui_recall_replay_from_list(keypress):
     if recording:
         stop_recording()
     recall_replay(replays[listbox.curselection()[0]])
-    send_all_hyperdecks("play: speed:50")
+    send_all_hyperdecks("play: speed:75")
 
 
 def gui_save_replay(keypress):
@@ -156,6 +156,10 @@ def gui_stop_record(keypress):
         stop_recording()
     else:
         send_all_hyperdecks("stop")
+    global replays
+    # Delete all old replays because they won't work
+    replays = []
+    sync_replay_names()
 # </editor-fold>
 
 
@@ -205,6 +209,12 @@ root.bind('<Return>', gui_recall_replay_from_list)
 root.bind('1', gui_save_replay)
 root.bind('2', gui_save_replay)
 root.bind('3', gui_save_replay)
+root.bind('4', gui_save_replay)
+root.bind('5', gui_save_replay)
+root.bind('6', gui_save_replay)
+root.bind('7', gui_save_replay)
+root.bind('8', gui_save_replay)
+root.bind('9', gui_save_replay)
 
 listbox.selection_set(0)
 root.mainloop()  # Keep the GUI window running
