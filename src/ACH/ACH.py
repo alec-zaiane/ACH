@@ -1,10 +1,13 @@
 from src.ACH.HyperDeck import *
 import os
 from time import time as time_seconds
+from time import sleep
 # from multiprocessing import Process
 from src.ACH.Replay import *
 from tkinter import *
 
+# program start time
+pgm_start_time = time_seconds()*1000
 # initialize hyperdeck list
 hyperdecks = []
 # initialize replay List
@@ -61,6 +64,10 @@ def start_recording():
     global last_deck_position
     last_deck_position = get_latest_time()
     send_all_hyperdecks("record")
+    sleep(0.01)
+    send_all_hyperdecks("stop")  # Stopping and restarting recording brings them back in sync
+    sleep(0.01)
+    send_all_hyperdecks("record")
     global record_start_time
     record_start_time = time()
     global recording
@@ -78,11 +85,11 @@ def save_replay(timeoffset_ms):
         record_duration = time() - record_start_time  # Make sure that the timecode it will save is within the active recording period
         if record_duration > timeoffset_ms:
             replays.append(
-                Replay(last_deck_position[0]+record_duration-timeoffset_ms, "replay @" + to_hyperdeck_code(time())))  # TODO Test to make sure, this should work
+                Replay(last_deck_position[0]+record_duration-timeoffset_ms, "replay @" + to_hyperdeck_code(time()-pgm_start_time)))  # TODO Test to make sure, this should work
             sync_replay_names()
         else:
             replays.append(
-                Replay(last_deck_position[0] + record_duration, "replay @" + to_hyperdeck_code(time())))  # TODO Test to make sure, this should work
+                Replay(last_deck_position[0] + record_duration, "replay @" + to_hyperdeck_code(time()-pgm_start_time)))  # TODO Test to make sure, this should work
             sync_replay_names()
 
     else:
@@ -102,7 +109,7 @@ def sync_replay_names():
 
 
 def recall_replay(replay):
-    print("DEBUG recalling replay " + replay.get_hyperdeck_tc() + " on all Hyperdecks")
+    print("recalling replay " + replay.get_hyperdeck_tc() + " on all Hyperdecks")
     for deck in hyperdecks:
         deck.goto(replay.get_hyperdeck_tc())
 
@@ -112,11 +119,8 @@ def get_latest_time():  # Returns the latest possible time the hyperdeck could j
     for deck in hyperdecks:  # find the last possible timecode of each hyperdeck
         out = deck.send_command("clips get")
         last_clip = out[-32:-8]
-        print("DEBUG Last clip"+last_clip)
         last_clip_start = last_clip[:11]
-        print("DEBUG lcs"+last_clip_start)
         last_clip_length = last_clip[:12]
-        print("DEBUG lcl" + last_clip_length)
         try:
             last_clip_end_ms.append(to_millis(last_clip_start) + to_millis(last_clip_length))
         except ValueError:
