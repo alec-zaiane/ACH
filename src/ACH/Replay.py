@@ -16,7 +16,7 @@ def to_hyperdeck_code(millis):
     seconds = round(total_seconds % 60)
     remaining_seconds = total_seconds-seconds
     total_minutes = remaining_seconds/60
-    minutes = round(total_minutes%60)
+    minutes = round(total_minutes % 60)
     remaining_minutes = total_minutes-minutes
     hours = round(remaining_minutes/60)
     return check_code_string(str(hours))+":"+check_code_string(str(minutes))+":"+check_code_string(str(seconds))+";"+check_code_string(str(frames))
@@ -43,5 +43,5 @@ class Replay:
     def get_hyperdeck_tc(self):
         return to_hyperdeck_code(self.millis)
 
-    def set_millis(self,milli):
+    def set_millis(self, milli):
         self.millis = milli

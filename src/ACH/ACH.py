@@ -124,4 +124,6 @@ print("════════════════════════�
 
 
 root = Tk()  # Create GUI Window
+# GUI CODE HERE
 
+root.mainloop()  # Keep the GUI window running
