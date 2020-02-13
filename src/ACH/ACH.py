@@ -97,6 +97,7 @@ def sync_replay_names():
     global replay_names_svar
     replay_names_svar = StringVar(value=replay_names)
 
+
 def recall_replay(replay):
     print("DEBUG recalling replay " + replay.get_hyperdeck_tc() + " on all Hyperdecks")
     for deck in hyperdecks:
@@ -137,7 +138,6 @@ def recall_replay_from_list():
 def save_replay_gui(keypress):
     key = str(keypress)[53:54]
     save_replay(int(key)*1000)
-
 
 
 def foo(keypress):
