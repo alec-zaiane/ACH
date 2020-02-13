@@ -94,7 +94,8 @@ def sync_replay_names():
     replay_names = []
     for replay in replays:
         replay_names.append(replay.name)
-
+    global replay_names_svar
+    replay_names_svar = StringVar(value=replay_names)
 
 def recall_replay(replay):
     print("DEBUG recalling replay " + replay.get_hyperdeck_tc() + " on all Hyperdecks")
