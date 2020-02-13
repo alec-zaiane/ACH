@@ -1,8 +1,9 @@
 from src.ACH.HyperDeckClass import*
 import os
-from time import time
+from time import time,sleep
 from multiprocessing import Process
 from src.ACH.TimecodeClass import *
+from tkinter import *
 
 # initialize hyperdeck list
 hyperdecks = []
@@ -12,6 +13,8 @@ replays = []
 # record_start_time
 global record_start_time
 record_start_time = 0
+global recording
+recording = False
 
 
 # <editor-fold desc="Function definitions">
@@ -50,11 +53,33 @@ def start_recording():
     send_all_hyperdecks("record")
     global record_start_time
     record_start_time = time()
+    global recording
+    recording = True
 
-def save_replay(timeOffset_ms):
-    record_duration = time()-record_start_time
-    if record_duration < timeOffset_ms:
-        replays.append("klajdksjadkljda") #TODO FIX THIS IMPORTANT
+
+def stop_recording():
+    send_all_hyperdecks("stop")
+    global recording
+    recording = False
+
+
+def save_replay(timeoffset_ms):
+    record_duration = time()-record_start_time  # Make sure that the timecode it will save is within the active recording period
+    if record_duration < timeoffset_ms:
+        replays.append(Timecode(record_start_time+time()))  # TODO Test this to make sure it works
+
+
+def recall_replay(timecode):
+    print("DEBUG recalling replay "+timecode.get_hyperdeck_tc()+" on all Hyperdecks")
+    for deck in hyperdecks:
+        deck.goto(timecode)
+
+
+def get_latest_time():
+    for deck in hyperdecks:
+        out = deck.send_command("clips get")
+        last_clip = out[-32:-8]
+        print(last_clip)
 
 # </editor-fold>
 
@@ -73,8 +98,11 @@ for hd in hyperdecks:
         print(str(hd)+" connected")
 print("══════════════════════════")
 
-print(to_millis("00:04:31:00"))
-print(to_hyperdeck_code(1000))
+start_recording()
+sleep(10)
+stop_recording()
+get_latest_time()
 
-print(hyperdecks[1].send_command("clips get"))
+root = Tk()  # Create GUI Window
+replayNames = []
 

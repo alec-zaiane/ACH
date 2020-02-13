@@ -2,6 +2,7 @@
   <dictionary name="scona">
     <words>
       <w>clipindex</w>
+      <w>timeoffset</w>
     </words>
   </dictionary>
 </component>

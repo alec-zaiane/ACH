@@ -39,3 +39,8 @@ class Timecode:
         # sets to the
         return
 
+    def get_hyperdeck_tc(self):
+        return to_hyperdeck_code(self.millis)
+
+    def set_millis(self,milli):
+        self.millis = milli
