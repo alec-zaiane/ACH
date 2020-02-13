@@ -64,9 +64,9 @@ def start_recording():
     global last_deck_position
     last_deck_position = get_latest_time()
     send_all_hyperdecks("record")
-    sleep(0.01)
+    sleep(0.1)
     send_all_hyperdecks("stop")  # Stopping and restarting recording brings them back in sync
-    sleep(0.01)
+    sleep(0.1)
     send_all_hyperdecks("record")
     global record_start_time
     record_start_time = time()
