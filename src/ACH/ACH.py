@@ -1,8 +1,8 @@
-from src.ACH.HyperDeckClass import*
+from src.ACH.HyperDeck import*
 import os
 from time import time,sleep
 from multiprocessing import Process
-from src.ACH.TimecodeClass import *
+from src.ACH.Replay import *
 from tkinter import *
 
 # initialize hyperdeck list
@@ -15,6 +15,8 @@ global record_start_time
 record_start_time = 0
 global recording
 recording = False
+global last_deck_position
+last_deck_position = 0
 
 
 # <editor-fold desc="Function definitions">
@@ -50,6 +52,8 @@ def send_all_hyperdecks(command):
 
 
 def start_recording():
+    global last_deck_position
+    last_deck_position = get_latest_time()
     send_all_hyperdecks("record")
     global record_start_time
     record_start_time = time()
@@ -66,7 +70,7 @@ def stop_recording():
 def save_replay(timeoffset_ms):
     record_duration = time()-record_start_time  # Make sure that the timecode it will save is within the active recording period
     if record_duration < timeoffset_ms:
-        replays.append(Timecode(record_start_time+time()))  # TODO Test this to make sure it works
+        replays.append(Replay(record_start_time + time()))  # TODO Test this to make sure it works
 
 
 def recall_replay(timecode):
@@ -75,11 +79,19 @@ def recall_replay(timecode):
         deck.goto(timecode)
 
 
-def get_latest_time():
-    for deck in hyperdecks:
+def get_latest_time():  # Returns the latest possible time the hyperdeck could jog to at that time
+    last_clip_end_ms = []
+    for deck in hyperdecks:  # find the last possible timecode of each hyperdeck
         out = deck.send_command("clips get")
         last_clip = out[-32:-8]
-        print(last_clip)
+        last_clip_start = last_clip[:11]
+        last_clip_length = last_clip[:12]
+        last_clip_end_ms.append(to_millis(last_clip_start)+to_millis(last_clip_length))
+    # make sure the timecodes are close to each other (<50ms different which would mean they are all within 3 frames of each other)
+    if abs(last_clip_end_ms[0] - last_clip_end_ms[1]) > 50:  # TODO make this work with >2 Hyperdecks
+        print("ERROR, Hyperdecks are out of sync by "+abs(last_clip_end_ms[0] - last_clip_end_ms[1])+"ms")
+    return last_clip_end_ms
+
 
 # </editor-fold>
 
@@ -98,11 +110,6 @@ for hd in hyperdecks:
         print(str(hd)+" connected")
 print("══════════════════════════")
 
-start_recording()
-sleep(10)
-stop_recording()
-get_latest_time()
 
 root = Tk()  # Create GUI Window
-replayNames = []
 
