@@ -60,13 +60,9 @@ def send_all_hyperdecks(command):
         process.join()
 
 
-def start_recording():
+def start_recording():  # TODO this should be async, then we can trust that they will start synchonized
     global last_deck_position
     last_deck_position = get_latest_time()
-    send_all_hyperdecks("record")
-    sleep(0.1)
-    send_all_hyperdecks("stop")  # Stopping and restarting recording brings them back in sync
-    sleep(0.1)
     send_all_hyperdecks("record")
     global record_start_time
     record_start_time = time()
