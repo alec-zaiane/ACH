@@ -78,7 +78,7 @@ def save_replay(timeoffset_ms):
         record_duration = time() - record_start_time  # Make sure that the timecode it will save is within the active recording period
         if record_duration < timeoffset_ms:
             replays.append(
-                Replay(record_start_time + time(), "replay @" + to_hyperdeck_code(time)))  # TODO Test this to make sure it works
+                Replay(last_deck_position+record_duration, "replay @" + to_hyperdeck_code(time)))  # TODO Test to make sure, this should work
             sync_replay_names()
         else:
             replays.append(
@@ -86,7 +86,7 @@ def save_replay(timeoffset_ms):
             )
     else:
         print("Not currently recording")
-    # TODO THIS WILL NOT WORK, FIND SOLUION
+
 
 def sync_replay_names():
     global replay_names
