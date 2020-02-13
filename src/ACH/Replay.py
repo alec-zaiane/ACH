@@ -31,8 +31,9 @@ def to_millis(timecode):
 
 
 class Replay:
-    def __init__(self, time, name, milli=True):
+    def __init__(self, time, name):
         self.millis = time
+        self.name = name
         # HyperDeck timecode is in HH:MM:SS;FF
 
     def set_now(self, start_time):

@@ -1,7 +1,7 @@
 from src.ACH.HyperDeck import*
 import os
-from time import time,sleep
-from multiprocessing import Process
+from time import time as time_seconds
+# from multiprocessing import Process
 from src.ACH.Replay import *
 from tkinter import *
 
@@ -11,12 +11,10 @@ hyperdecks = []
 replays = []
 
 # record_start_time
-global record_start_time
 record_start_time = 0
-global recording
 recording = False
-global last_deck_position
 last_deck_position = 0
+# ^By calling global later on before referencing any of these vars, it accesses these instead of creating new local ones
 
 
 # <editor-fold desc="Function definitions">
@@ -29,6 +27,10 @@ def print_log_total():
     for entry in main_log:
         print(entry)
         print("══════════════════════════")
+
+
+def time():
+    return int(round(time_seconds() * 1000))
 
 
 # Function to send a command to a single hyperdeck
@@ -70,13 +72,13 @@ def stop_recording():
 def save_replay(timeoffset_ms):
     record_duration = time()-record_start_time  # Make sure that the timecode it will save is within the active recording period
     if record_duration < timeoffset_ms:
-        replays.append(Replay(record_start_time + time()))  # TODO Test this to make sure it works
+        replays.append(Replay(record_start_time + time(), "replay @"+str(time())))  # TODO Test this to make sure it works
 
 
-def recall_replay(timecode):
-    print("DEBUG recalling replay "+timecode.get_hyperdeck_tc()+" on all Hyperdecks")
+def recall_replay(replay):
+    print("DEBUG recalling replay "+replay.get_hyperdeck_tc()+" on all Hyperdecks")
     for deck in hyperdecks:
-        deck.goto(timecode)
+        deck.goto(replay.get_hyperdeck_tc())
 
 
 def get_latest_time():  # Returns the latest possible time the hyperdeck could jog to at that time
@@ -95,6 +97,7 @@ def get_latest_time():  # Returns the latest possible time the hyperdeck could j
 
 # </editor-fold>
 
+# START OF MAIN ********************************************************************************************************
 
 # Load Hyperdecks from file found two directories up (os.pardir to go up) and in the assets folder (should be OS agnostic)
 print("Loading HyperDecks:")
