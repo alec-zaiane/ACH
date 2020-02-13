@@ -9,6 +9,7 @@ from tkinter import *
 hyperdecks = []
 # initialize replay List
 replays = []
+replay_names =[]
 
 # record_start_time
 record_start_time = 0
@@ -73,6 +74,14 @@ def save_replay(timeoffset_ms):
     record_duration = time()-record_start_time  # Make sure that the timecode it will save is within the active recording period
     if record_duration < timeoffset_ms:
         replays.append(Replay(record_start_time + time(), "replay @"+str(time())))  # TODO Test this to make sure it works
+        sync_replay_names()
+
+
+def sync_replay_names():
+    global replay_names
+    replay_names = []
+    for replay in replays:
+        replay_names.append(replay.name)
 
 
 def recall_replay(replay):
