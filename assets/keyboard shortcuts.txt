@@ -2,6 +2,8 @@ ACTIVE:
     up/down:               move up/down in replay list
     enter/double click:    recall replay
     numpad 1/2/3:          save replay 1/2/3 seconds earlier
+    r:                     start recording
+    s:                     stop recording
 
 DESIRED:
     backspace:             edit replay name

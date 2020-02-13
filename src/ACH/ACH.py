@@ -109,9 +109,15 @@ def get_latest_time():  # Returns the latest possible time the hyperdeck could j
     for deck in hyperdecks:  # find the last possible timecode of each hyperdeck
         out = deck.send_command("clips get")
         last_clip = out[-32:-8]
+        print("DEBUG Last clip"+last_clip)
         last_clip_start = last_clip[:11]
+        print("DEBUG lcs"+last_clip_start)
         last_clip_length = last_clip[:12]
-        last_clip_end_ms.append(to_millis(last_clip_start) + to_millis(last_clip_length))
+        print("DEBUG lcl" + last_clip_length)
+        try:
+            last_clip_end_ms.append(to_millis(last_clip_start) + to_millis(last_clip_length))
+        except ValueError:
+            last_clip_end_ms.append(0)
     # make sure the timecodes are close to each other (<50ms different which would mean they are all within 3 frames of each other)
     if abs(last_clip_end_ms[0] - last_clip_end_ms[1]) > 50:  # TODO make this work with >2 Hyperdecks
         print("ERROR, Hyperdecks are out of sync by " + abs(last_clip_end_ms[0] - last_clip_end_ms[1]) + "ms")
@@ -121,28 +127,31 @@ def get_latest_time():  # Returns the latest possible time the hyperdeck could j
 # </editor-fold>
 
 # <editor-fold desc="GUI functions">
-def change_listbox_index(up=True):
-    if listbox.curselection() and not first_gui_loop:
-        current = listbox.curselection()
-        if up:
-            listbox.selection_set(current - 1, current - 1)
-        else:
-            listbox.selection_set(current + 1, current + 1)
+
+def gui_recall_replay_from_list():
+    if recording:
+        stop_recording()
+    recall_replay(replays[listbox.curselection()[0]])
+    send_all_hyperdecks("play")
 
 
-def recall_replay_from_list():
-    if listbox.curselection() and not first_gui_loop:
-        recall_replay(replays[listbox.curselection()[0]])
-
-
-def save_replay_gui(keypress):
-    key = str(keypress)[53:54]
+def gui_save_replay(keypress):
+    try:
+        idx = str(keypress).index("char=")
+    except ValueError:
+        print("Keypress issue, could not find 'char=' in "+str(keypress))
+    key = str(keypress)[idx+6:idx+7]
     save_replay(int(key)*1000)
 
 
-def foo(keypress):
-    print("foo")
-    print(keypress)
+def gui_start_record(keypress):
+    start_recording()
+
+
+def gui_stop_record(keypress):
+    if recording:
+        stop_recording()
+
 # </editor-fold>
 
 
@@ -163,14 +172,10 @@ for hd in hyperdecks:
         print(str(hd) + " connected")
 print("══════════════════════════")
 
-# DEBUG load random stuff into replay_names
-for i in range(10):
-    replay_names.append("replay "+str(i))
 
 root = Tk()  # Create GUI Window
 root.geometry('450x500')  # sets window size
 # GUI CODE HERE
-first_gui_loop = True  # needed because binding executes the code once which we don't want
 # initialize stuff
 replay_names_svar = StringVar(value=replay_names)
 listbox = Listbox(root, listvariable=replay_names_svar, height=20)
@@ -183,15 +188,19 @@ listbox.grid(column=0, row=1, padx=5)
 #     listbox.itemconfigure(i, background='#f0f0ff')
 # assign keyboard shortcuts
 
+# Bindings
+# play and record bindings
+root.bind('r', gui_start_record)
+root.bind('s', gui_stop_record)
+
 # Recall replays bindings
-listbox.bind('<Double-1>', recall_replay_from_list())
-root.bind('<Return>', recall_replay_from_list)
+listbox.bind('<Double-1>', gui_recall_replay_from_list)
+root.bind('<Return>', gui_recall_replay_from_list)
 
 # saving replays bindings
-root.bind('1', save_replay_gui)
-root.bind('2', save_replay_gui)
-root.bind('3', save_replay_gui)
+root.bind('1', gui_save_replay)
+root.bind('2', gui_save_replay)
+root.bind('3', gui_save_replay)
 
 listbox.selection_set(0)
-first_gui_loop = False
 root.mainloop()  # Keep the GUI window running
