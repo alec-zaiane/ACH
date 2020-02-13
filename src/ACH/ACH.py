@@ -136,7 +136,7 @@ def gui_recall_replay_from_list(keypress):
     if recording:
         stop_recording()
     recall_replay(replays[listbox.curselection()[0]])
-    send_all_hyperdecks("play: speed:75")
+    send_all_hyperdecks("play: speed:50")
 
 
 def gui_save_replay(keypress):
