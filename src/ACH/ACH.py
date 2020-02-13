@@ -102,6 +102,7 @@ def sync_replay_names():
         listbox.insert(END,replay.name)  # add replay name to listbox
     global replay_names_svar
     replay_names_svar = StringVar(value=replay_names)
+    listbox.selection_set(END)
 
 
 def recall_replay(replay):
@@ -148,6 +149,10 @@ def gui_save_replay(keypress):
 
 
 def gui_start_record(keypress):
+    # Delete all old replays because they won't work anymore
+    global replays
+    replays = []
+    sync_replay_names()
     start_recording()
 
 
@@ -156,10 +161,7 @@ def gui_stop_record(keypress):
         stop_recording()
     else:
         send_all_hyperdecks("stop")
-    global replays
-    # Delete all old replays because they won't work
-    replays = []
-    sync_replay_names()
+
 # </editor-fold>
 
 
