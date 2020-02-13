@@ -76,13 +76,13 @@ def stop_recording():
 def save_replay(timeoffset_ms):
     if recording:
         record_duration = time() - record_start_time  # Make sure that the timecode it will save is within the active recording period
-        if record_duration < timeoffset_ms:
+        if record_duration > timeoffset_ms:
             replays.append(
-                Replay(last_deck_position+record_duration-timeoffset_ms, "replay @" + to_hyperdeck_code(time)))  # TODO Test to make sure, this should work
+                Replay(last_deck_position[0]+record_duration-timeoffset_ms, "replay @" + to_hyperdeck_code(time())))  # TODO Test to make sure, this should work
             sync_replay_names()
         else:
             replays.append(
-                Replay(last_deck_position + record_duration, "replay @" + to_hyperdeck_code(time)))  # TODO Test to make sure, this should work
+                Replay(last_deck_position[0] + record_duration, "replay @" + to_hyperdeck_code(time())))  # TODO Test to make sure, this should work
             sync_replay_names()
 
     else:
@@ -91,9 +91,12 @@ def save_replay(timeoffset_ms):
 
 def sync_replay_names():
     global replay_names
-    replay_names = []
+    replay_names = []  # clear all items in replay names list
+    # Clear all items in listbox
+    listbox.delete(0, END)
     for replay in replays:
-        replay_names.append(replay.name)
+        replay_names.append(replay.name)  # add replay name to list
+        listbox.insert(END,replay.name)  # add replay name to listbox
     global replay_names_svar
     replay_names_svar = StringVar(value=replay_names)
 
@@ -128,7 +131,7 @@ def get_latest_time():  # Returns the latest possible time the hyperdeck could j
 
 # <editor-fold desc="GUI functions">
 
-def gui_recall_replay_from_list():
+def gui_recall_replay_from_list(keypress):
     if recording:
         stop_recording()
     recall_replay(replays[listbox.curselection()[0]])
@@ -151,7 +154,8 @@ def gui_start_record(keypress):
 def gui_stop_record(keypress):
     if recording:
         stop_recording()
-
+    else:
+        send_all_hyperdecks("stop")
 # </editor-fold>
 
 
