@@ -2,7 +2,6 @@ from src.ACH.HyperDeck import *
 import os
 from time import time as time_seconds
 from time import sleep
-# from multiprocessing import Process
 from src.ACH.Replay import *
 from tkinter import *
 
@@ -41,29 +40,27 @@ def time():
 
 
 # Function to send a command to a single hyperdeck
-def send_hyperdeck(hyperdeck, command):
-    hyperdeck.send_command(command)
+def send_hyperdeck(hyperdeck, command,response=True):
+    if response:
+        return hyperdeck.send_command(command)
+    else:
+        hyperdeck.send_command_no_receive(command)
+        return ""
 
 
 # Function to send a command simultaneously to every hyperdeck
-def send_all_hyperdecks(command):
-    processes = []
+def send_all_hyperdecks(command, response=True):
+    hyperdeck_outputs = []
     # Create multiple processes to send each hyperdeck a command at the same time
     for deck in hyperdecks:
         if deck.connectable:
-            send_hyperdeck(deck, command)
-    # start each process
-    for process in processes:
-        process.start()
-    # Wait for each process to end
-    for process in processes:
-        process.join()
+            hyperdeck_outputs.append(send_hyperdeck(deck, command, response=response))
 
 
-def start_recording():  # TODO this should be async, then we can trust that they will start synchonized
+def start_recording():  # TODO this should be async, then we can trust that they will start synchronized
     global last_deck_position
     last_deck_position = get_latest_time()
-    send_all_hyperdecks("record")
+    send_all_hyperdecks("record", response=False)  # should not wait for a response from the HD, ensuring they will all start relatively at the same time
     global record_start_time
     record_start_time = time()
     global recording
@@ -136,7 +133,7 @@ def gui_recall_replay_from_list(keypress):
     if recording:
         stop_recording()
     recall_replay(replays[listbox.curselection()[0]])
-    send_all_hyperdecks("play: speed:"+str(speed_slider.get()))
+    send_all_hyperdecks("play: speed:"+str(speed_slider.get()), response=False)
     global playing_replay
     playing_replay = True
 
