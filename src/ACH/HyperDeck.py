@@ -18,7 +18,7 @@ class HyperDeck:
         except (socket.timeout, TimeoutError):
             self.tn = ""
             self.connectable = False
-            print(str(self)+"Refused to connect")
+            print(str(self)+" Refused to connect")
         self.log = []
         self.error_log = []
         self.always_print_log = False
@@ -106,10 +106,9 @@ class HyperDeck:
             self.add_log(out, from_hd=True)  # adds the output to the log
             return out  # Return the hyperdeck's answer in case needed
         else:
-            print(str(self) + " is not connected/not reachable, run test_connection() to verify and attempt to reconnect")
-            return "Error: Hyperdeck is not connected"
+            return "Error"
 
-    def send_command_no_receive(self,command):
+    def send_command_no_receive(self, command):
         if self.connectable:
             if self.last_command_received:
                 self.add_log("send_no_receive: " + command)
