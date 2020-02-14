@@ -1,5 +1,4 @@
 from telnetlib import Telnet
-from threading import Thread
 import socket
 
 
@@ -7,23 +6,26 @@ import socket
 main_log = []
 
 tcp_port = 9993
-multithread = False
 
 
 class HyperDeck:
 
     def __init__(self, ip):
         self.ip = ip
-        # self.tn = Telnet(self.ip, tcp_port)
+        self.connectable = True
+        try:
+            self.tn = Telnet(self.ip, tcp_port, timeout=4)  # Opens new telnet object with connection to Hyperdeck
+        except (socket.timeout, TimeoutError):
+            self.connectable = False
+            print(str(self)+"Refused to connect")
         self.log = []
         self.error_log = []
         self.always_print_log = False
-        self.connectable = True
-        self.firstConnect = True
         self.send_command("play")
         self.mode = "play"
         self.send_command("stop")
         self.end_time = ""
+        self.last_command_received = True
 
     def __str__(self):
         return "Hyperdeck @" + self.ip
@@ -97,48 +99,32 @@ class HyperDeck:
     def send_command(self, command):
         if self.connectable:
             self.add_log("send: " + command)
-            if multithread:
-                print("DEBUG Command:" + command)
-                # open new thread with the goal of running send_command_multithread_process
-                p1 = Thread(target=self.send_command_multithread_process, args=(self, command))
-                p1.start()  # run the thread
-            else:
-                try:
-                    tn = Telnet(self.ip, tcp_port, timeout=4)  # Opens new telnet object with connection to Hyperdeck
-                except (socket.timeout, TimeoutError):
-                    self.connectable = False
-                    self.add_log("TimeoutError, Hyperdeck refused to connect")
-                    if not self.firstConnect:
-                        print(str(self)+" Refused to connect")
-                    self.firstConnect = False
-                    return "Error"
-                tn.write(bytes(command, "utf-8") + b'\r\n')  # Sends the command to the Hyperdeck
-                tn.write(b'quit' + b'\r\n')  # quit connection, for some reason this is needed
-                out = tn.read_all().decode('ascii')  # Reads the hyperdeck's answer and writes it to a var
-                self.add_log(out, from_hd=True)  # adds the output to the log
-                return out  # Return the hyperdeck's answer in case needed
+            self.tn.write(bytes(command, "utf-8") + b'\r\n')  # Sends the command to the Hyperdeck
+            # self.tn.write(b'quit' + b'\r\n')  # quit connection, for some reason this is needed TODO determine if this is needed
+            out = self.tn.read_all().decode('ascii')  # Reads the hyperdeck's answer and writes it to a var
+            self.add_log(out, from_hd=True)  # adds the output to the log
+            return out  # Return the hyperdeck's answer in case needed
         else:
             print(str(self) + " is not connected/not reachable, run test_connection() to verify and attempt to reconnect")
             return "Error: Hyperdeck is not connected"
 
-    def send_command_multithread_process(self, command):
-        print("DEBUG Command inside multithread"+command)
-        try:
-            tn = Telnet(self.ip, tcp_port)
-        except (socket.timeout, TimeoutError):
-            self.connectable = False
-            self.add_log("TimeoutError, Hyperdeck refused to connect")
-            if not self.firstConnect:
-                print(str(self) + " Refused to connect")
-            self.firstConnect = False
-            return "Error"
-        tn.write(bytes(command, "utf-8") + b'\r\n')
-        tn.write(b'quit' + b'\r\n')
-        out = tn.read_all().decode('ascii')
-        self.add_log(out, from_hd=True)
-        # return statement kills the thread
-        # since memory space is shared we don't have to worry about waiting for it and joining vars
-        return out
+    def send_command_no_receive(self,command):
+        if self.connectable:
+            if self.last_command_received:
+                self.add_log("send_no_receive: " + command)
+                self.tn.write(bytes(command, "utf-8") + b'\r\n')  # Sends the command to the Hyperdeck
+                # TODO we may also have to add a quit command if needed
+                self.last_command_received = False
+            else:
+                print("Error, Last command not received")
+
+    def receive_last_command(self):
+        if not self.last_command_received:
+            out = self.tn.read_all().decode('ascii')  # Reads the hyperdeck's answer and writes it to a var
+            self.add_log(out, from_hd=True)
+            return out
+        else:
+            print("last command already received")
 
     def send_user_command(self):
         command = input("Please type a command to send\n")
