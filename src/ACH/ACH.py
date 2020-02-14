@@ -183,9 +183,7 @@ for ip in hyperdeck_ip_list:
 # Test if each Hyperdeck is connected, if not, warn user
 for hd in hyperdecks:
     output = hd.test_connection()
-    if output == "Error":
-        print(str(hd) + " is not reachable")
-    else:
+    if not output == "Error":
         print(str(hd) + " connected")
 print("══════════════════════════")
 

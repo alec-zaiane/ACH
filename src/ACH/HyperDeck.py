@@ -16,6 +16,7 @@ class HyperDeck:
         try:
             self.tn = Telnet(self.ip, tcp_port, timeout=4)  # Opens new telnet object with connection to Hyperdeck
         except (socket.timeout, TimeoutError):
+            self.tn = ""
             self.connectable = False
             print(str(self)+"Refused to connect")
         self.log = []
@@ -132,9 +133,11 @@ class HyperDeck:
         print(self.send_command(command))
 
     def test_connection(self):
-        self.connectable = True
-        back = self.send_command('ping')
-        return back
+        if self.connectable:
+            back = self.send_command('ping')
+            return back
+        else:
+            return "Error"
 
     def play_specific(self, speed, loop, single_clip):
         # speed is int, loop and single_clip are boolean
