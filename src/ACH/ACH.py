@@ -112,7 +112,8 @@ def get_latest_time():  # Returns the latest possible time the hyperdeck could j
     last_clip_end_ms = []
     for deck in hyperdecks:  # find the last possible timecode of each hyperdeck
         out = deck.send_command("clips get")
-        last_clip = out[-32:-8]
+        last_clip = out[-25:-1]
+        print("DEBUG Last clip " + last_clip)
         last_clip_start = last_clip[:11]
         last_clip_length = last_clip[:12]
         try:
