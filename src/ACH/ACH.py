@@ -19,7 +19,7 @@ replay_names = []
 record_start_time = 0
 recording = False
 last_deck_position = 0
-
+playing_replay = False
 
 # ^By calling global later on before referencing any of these vars, it accesses these instead of creating new local ones
 
@@ -136,7 +136,9 @@ def gui_recall_replay_from_list(keypress):
     if recording:
         stop_recording()
     recall_replay(replays[listbox.curselection()[0]])
-    send_all_hyperdecks("play: speed:50")
+    send_all_hyperdecks("play: speed:"+str(speed_slider.get()))
+    global playing_replay
+    playing_replay = True
 
 
 def gui_save_replay(keypress):
@@ -151,17 +153,25 @@ def gui_save_replay(keypress):
 def gui_start_record(keypress):
     # Delete all old replays because they won't work anymore
     global replays
+    global playing_replay
+    playing_replay = False
     replays = []
     sync_replay_names()
     start_recording()
 
 
 def gui_stop_record(keypress):
+    global playing_replay
+    playing_replay = False
     if recording:
         stop_recording()
     else:
         send_all_hyperdecks("stop")
 
+
+def gui_play_speed(speed):
+    if not recording and playing_replay:  # confirm we aren't recording and that we are playing back a replay
+        send_all_hyperdecks("play: speed:"+speed)
 # </editor-fold>
 
 
@@ -184,15 +194,18 @@ print("════════════════════════�
 
 
 root = Tk()  # Create GUI Window
-root.geometry('450x500')  # sets window size
+root.geometry('450x600')  # sets window size
 # GUI CODE HERE
 # initialize stuff
 replay_names_svar = StringVar(value=replay_names)
 listbox = Listbox(root, listvariable=replay_names_svar, height=20)
 title_lbl = Label(root, text="ACH")
+speed_slider = Scale(root, from_=-100, to=100, length=200, orient=HORIZONTAL, command=gui_play_speed)
+speed_slider.set(50)
 # place everything in a grid layout
 title_lbl.grid(column=0, row=0, pady=5)
 listbox.grid(column=0, row=1, padx=5)
+speed_slider.grid(column=0, row=2, pady=5, padx=5)
 # colour alternating lines of the listbox TODO not working
 # for i in range(0, len(replay_names), 2):
 #     listbox.itemconfigure(i, background='#f0f0ff')
