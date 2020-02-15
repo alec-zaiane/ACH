@@ -41,17 +41,17 @@ def time():
 
 
 # Function to send a command to a single hyperdeck
-def send_hyperdeck(hyperdeck, command):
-    hyperdeck.send_command(command)
+def send_hyperdeck(hyperdeck, command, reply=True):
+    hyperdeck.send_command(command, reply)
 
 
 # Function to send a command simultaneously to every hyperdeck
-def send_all_hyperdecks(command):
+def send_all_hyperdecks(command, reply=True):
     processes = []
-    # Create multiple processes to send each hyperdeck a command at the same time
+    # Create multiple processes to send each hyperdeck a command at the same time //not actually right now
     for deck in hyperdecks:
         if deck.connectable:
-            send_hyperdeck(deck, command)
+            send_hyperdeck(deck, command, reply=reply)
     # start each process
     for process in processes:
         process.start()
@@ -63,7 +63,7 @@ def send_all_hyperdecks(command):
 def start_recording():  # TODO this should be async, then we can trust that they will start synchonized
     global last_deck_position
     last_deck_position = get_latest_time()
-    send_all_hyperdecks("record")
+    send_all_hyperdecks("record", reply=False)
     global record_start_time
     record_start_time = time()
     global recording
@@ -133,8 +133,7 @@ def get_latest_time():  # Returns the latest possible time the hyperdeck could j
 # <editor-fold desc="GUI functions">
 
 def gui_recall_replay_from_list(keypress):
-    if recording:
-        stop_recording()
+    stop_recording()
     recall_replay(replays[listbox.curselection()[0]])
     send_all_hyperdecks("play: speed:"+str(speed_slider.get()))
     global playing_replay

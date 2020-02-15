@@ -94,7 +94,7 @@ class HyperDeck:
     def always_print_log(self, print_on_log_entry):
         self.always_print_log = print_on_log_entry
 
-    def send_command(self, command):
+    def send_command(self, command, reply=True):
         if self.connectable:
             self.add_log("send: " + command)
             if multithread:
@@ -114,7 +114,10 @@ class HyperDeck:
                     return "Error"
                 tn.write(bytes(command, "utf-8") + b'\r\n')  # Sends the command to the Hyperdeck
                 tn.write(b'quit' + b'\r\n')  # quit connection, for some reason this is needed
-                out = tn.read_all().decode('ascii')  # Reads the hyperdeck's answer and writes it to a var
+                if reply:
+                    out = tn.read_all().decode('ascii')  # Reads the hyperdeck's answer and writes it to a var
+                else:
+                    out = "200 reply disabled"
                 self.add_log(out, from_hd=True)  # adds the output to the log
                 return out  # Return the hyperdeck's answer in case needed
         else:
@@ -169,7 +172,7 @@ class HyperDeck:
 
     def goto(self, timecode):
         # TODO Verify timecode format before sending message
-        self.send_command("goto: timecode:" + timecode)
+        self.send_command("goto: timecode:" + timecode, reply=False )
         self.mode = "play"
 
     def get_clips(self):  # not sure if actually needed
