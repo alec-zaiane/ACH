@@ -7,3 +7,7 @@ ACTIVE:
 
 DESIRED:
     backspace:             edit replay name
+    y - reverse 100%
+    u - reverse 50%
+    i - forward 50%
+    o - forward 100%

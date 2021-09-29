@@ -60,7 +60,7 @@ def send_all_hyperdecks(command, reply=True):
         process.join()
 
 
-def start_recording():  # TODO this should be async, then we can trust that they will start synchonized
+def start_recording():  # TODO this should be async, then we can trust that they will start synchronized
     global last_deck_position
     last_deck_position = get_latest_time()
     send_all_hyperdecks("record", reply=False)
@@ -171,6 +171,24 @@ def gui_stop_record(keypress):
 def gui_play_speed(speed):
     if not recording and playing_replay:  # confirm we aren't recording and that we are playing back a replay
         send_all_hyperdecks("play: speed:"+speed)
+
+
+def gui_play_speed_keypress(pressedKey):
+    speed = 100
+    mult = 1
+    if pressedKey == 'y':
+        speed = -100*mult
+    elif pressedKey == 'u':
+        speed = -50*mult
+    elif pressedKey == 'i':
+        speed = 50*mult
+    elif pressedKey == 'o':
+        speed = 100*mult
+
+    speed_slider.set(speed)
+    gui_play_speed(str(speed))
+
+
 # </editor-fold>
 
 
@@ -229,6 +247,10 @@ root.bind('6', gui_save_replay)
 root.bind('7', gui_save_replay)
 root.bind('8', gui_save_replay)
 root.bind('9', gui_save_replay)
+root.bind('u', gui_play_speed_keypress)
+root.bind('i', gui_play_speed_keypress)
+root.bind('o', gui_play_speed_keypress)
+root.bind('p', gui_play_speed_keypress)
 
 listbox.selection_set(0)
 root.mainloop()  # Keep the GUI window running
